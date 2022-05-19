@@ -16,6 +16,19 @@ docker build --build-arg APP_INSIGHTS_VERSION=${APP_INSIGHTS_VERSION}  . -t camp
 
 ## use it in an initContainer
 
-```yaml
+Create an initContainer that puts the JAR file in some emptyDir share of the pod
 
+```yaml
+InitContainers:
+  - name: inject-application-insight
+    image: package-application-insights:3.2.11
+    volumeMounts:
+    - name: localshare
+        mountPath: /mnt/localshare/
+    command:
+    - /bin/sh
+    - -c
+    - cp /stuff/applicationinsights-agent-3.2.11.jar /mnt/localshare/applicationinsights-agent-3.2.11.jar
 ```
+
+then start your main application adding `-javaagent /mnt/localshare/applicationinsights-agent-3.2.11.jar`
