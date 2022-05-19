@@ -19,7 +19,7 @@ docker build --build-arg APP_INSIGHTS_VERSION=${APP_INSIGHTS_VERSION}  . -t camp
 Create an initContainer that puts the JAR file in some emptyDir share of the pod
 
 ```yaml
-InitContainers:
+initContainers:
   - name: inject-application-insight
     image: package-application-insights:3.2.11
     volumeMounts:
