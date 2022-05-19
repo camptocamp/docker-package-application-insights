@@ -21,7 +21,7 @@ Create an initContainer that puts the JAR file in some emptyDir share of the pod
 ```yaml
 initContainers:
   - name: inject-application-insight
-    image: package-application-insights:3.2.11
+    image: camptocamp/package-application-insights:3.2.11
     volumeMounts:
     - name: localshare
         mountPath: /mnt/localshare/
